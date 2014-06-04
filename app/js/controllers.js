@@ -2,7 +2,12 @@
 
 /* Controllers */
 
-angular.module('myApp.controllers', [])
-  .controller('MyCtrl1', ['$scope', function($scope) {
+var phonecatApp = angular.module('phonecatApp', []);
 
-  }]);
+phonecatApp.controller('WalutyCtrl', function ($scope, $http) {
+  $http.get('waluty/waluty.json').success(function(data) {
+    $scope.waluty = data;
+  });
+
+  $scope.orderProp = 'I';
+});
