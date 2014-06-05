@@ -1,13 +1,12 @@
 'use strict';
 
 /* Controllers */
+var myApp = angular.module('myApp.controllers', []);
 
-var phonecatApp = angular.module('phonecatApp', []);
-
-phonecatApp.controller('WalutyCtrl', function ($scope, $http) {
-  $http.get('waluty/waluty.json').success(function(data) {
-    $scope.waluty = data;
-  });
-
-  $scope.orderProp = 'I';
+myApp.controller('kursyCtrl', function ($scope, $http) {
+  setInterval(function() {
+    $http.get('http://marketools.plus500.com/Feeds/UpdateTable?instsIds=56,55,2,100,27,5,177,305').success(function(data) {
+      $scope.kursy = data.Feeds;
+    });
+  },1000);
 });

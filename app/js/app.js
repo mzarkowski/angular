@@ -1,15 +1,15 @@
 'use strict';
 
-
-// Declare app level module which depends on filters, and services
-angular.module('myApp', [
+var app = angular.module('myApp', [
   'ngRoute',
-  'myApp.filters',
-  'myApp.services',
-  'myApp.directives',
   'myApp.controllers'
-]).
-config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/view1', {templateUrl: 'partials/partial1.html', controller: 'WalutyCtrl1'});
-  $routeProvider.otherwise({redirectTo: '/view1'});
+]);
+app.config(['$routeProvider', '$httpProvider', function($routeProvider, $httpProvider) {
+  $routeProvider.when('/kursywalut', {templateUrl: 'partials/tabelka.html', controller: 'kursyCtrl'});
+  $routeProvider.otherwise({redirectTo: '/kursywalut'});
+  
+   $httpProvider.defaults.withCredentials = true;
+  delete $httpProvider.defaults.headers.common["X-Requested-With"];
+
+
 }]);
